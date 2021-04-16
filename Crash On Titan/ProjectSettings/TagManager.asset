@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - turn
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - 
   - Player
   - Obsticles
-  - 
+  - Ground
   - 
   - 
   - 
@@ -40,4 +41,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3053809849
+    locked: 0
+  - name: Decor
+    uniqueID: 3039659443
+    locked: 0
+  - name: Decor2
+    uniqueID: 980247387
+    locked: 0
+  - name: Decor3
+    uniqueID: 476235907
+    locked: 0
+  - name: Platforms
+    uniqueID: 3176994985
+    locked: 0
+  - name: Player
+    uniqueID: 1692348939
+    locked: 0
+  - name: Enemy
+    uniqueID: 3779608525
     locked: 0
