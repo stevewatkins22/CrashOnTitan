@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
 
     public int numberOfJumps = 2;
+    public int health = 100;
 
     public Transform groundCheck;
 
@@ -142,5 +143,20 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }
