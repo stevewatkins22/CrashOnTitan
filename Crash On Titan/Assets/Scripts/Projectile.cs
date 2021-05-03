@@ -17,12 +17,17 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         PlayerController player = hitInfo.GetComponent<PlayerController>();
+
         if (player != null)
         {
             player.TakeDamage(damage);
             Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else if (hitInfo.gameObject.CompareTag("Coins")) { }
+        else
+        {
+            Destroy(gameObject);
+        }
 
     }
 }

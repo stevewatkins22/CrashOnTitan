@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
+    private int sceneToContinue;
+
+    public int setLives = 3;
+    public int setJumps = 2;
+
     public GameObject SettingMenuUI;
 
     private void Start()
@@ -14,14 +20,35 @@ public class MainMenu : MonoBehaviour
 
     public void Continue()
     {
-        SceneManager.LoadScene("Level_One");
+        sceneToContinue = PlayerPrefs.GetInt("SavedScene");
+        if(sceneToContinue!=0)
+        {
+            SceneManager.LoadScene(sceneToContinue);
+        }
+        else
+        {
+            New();
+        }
     }
 
     public void New()
     {
-        SceneManager.LoadScene("Level_One");
+        PlayerPrefs.DeleteKey("Score");
+        PlayerPrefs.DeleteKey("Retry");
+        PlayerPrefs.SetInt("Lives", setLives);
+        PlayerPrefs.SetInt("Jumps", setJumps);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
     }
 
+    public void NewGame()
+    {
+        PlayerPrefs.DeleteKey("Score");
+        PlayerPrefs.DeleteKey("Retry");
+        PlayerPrefs.SetInt("Lives", setLives);
+        PlayerPrefs.SetInt("Jumps", setJumps);
+        SceneManager.LoadScene("Level_1");
+    }
+    
     public void SettingsOpen()
     {
         SettingMenuUI.SetActive(true);

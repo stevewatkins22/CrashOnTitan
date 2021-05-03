@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - turn
+  - Coins
+  - bug
+  - Respawn/Start
+  - GameManager
+  - Upgrade
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - 
   - 
   - Player
-  - Obsticles
+  - Enemy
   - Ground
   - 
   - 
@@ -60,6 +64,12 @@ TagManager:
   - name: Player
     uniqueID: 1692348939
     locked: 0
+  - name: AcidWater
+    uniqueID: 599533343
+    locked: 0
   - name: Enemy
     uniqueID: 3779608525
+    locked: 0
+  - name: UI
+    uniqueID: 2062611603
     locked: 0

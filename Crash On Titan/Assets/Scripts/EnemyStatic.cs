@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyStatic : MonoBehaviour
 {
     public int health = 50;
+    public int value = 50;
 
     public bool playerFound;
     public bool ShootAtPlayer;
@@ -23,6 +24,8 @@ public class EnemyStatic : MonoBehaviour
 
     public LayerMask whatIsPlayer;
 
+    public GameManager gm;
+
     private float shotCounter;
 
     void Start()
@@ -30,9 +33,11 @@ public class EnemyStatic : MonoBehaviour
         isFacingLeft = true;
 
         shotCounter = waitBetweenShots;
+
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         CheckSurroundings();
         CheckFacingDirection();
@@ -48,12 +53,18 @@ public class EnemyStatic : MonoBehaviour
         if(health <= 0)
         {
             Die();
+            AddScore();
         }
     }
 
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    void AddScore()
+    {
+        gm.AddScore(value);
     }
 
     private void CheckSurroundings()
@@ -64,33 +75,11 @@ public class EnemyStatic : MonoBehaviour
 
     private void CheckFacingDirection()
     {
-        if (playerFound && Player.transform.position.x > transform.position.x)
+        if (playerFound)
         {
-            if (isFacingLeft)
-            {
                 Flip();
-            }
-            else { }
-        }
-        else if (playerFound && Player.transform.position.x < transform.position.x)
-        {
-            if (!isFacingLeft)
-            {
-                Flip();
-            }
-            else { }
         }
 
-        if (isFacingLeft && Player.transform.position.x > transform.position.x)
-        {
-            Flip();
-            isFacingLeft = false;
-        }
-        else if (!isFacingLeft && Player.transform.position.x < transform.position.x) 
-        {
-            Flip();
-            isFacingLeft = true;
-        }
 
         if(ShootAtPlayer && shotCounter < 0)
         {
@@ -109,10 +98,6 @@ public class EnemyStatic : MonoBehaviour
 
     private void Flip()
     {
-        if (isFacingLeft)
-        { isFacingLeft = !isFacingLeft; }
-        else { isFacingLeft = true; }
-        
         transform.Rotate(0, 180, 0);
     }
 

@@ -22,7 +22,12 @@ public class Bullet : MonoBehaviour
             enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else if(hitInfo.gameObject.CompareTag("Coins")){}
+        else
+        {
+            Destroy(gameObject);
+        }
+        
 
     }
 }

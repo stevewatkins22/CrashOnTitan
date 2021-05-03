@@ -7,33 +7,35 @@ public class AudioSettings : MonoBehaviour
 
     public AudioSource m_AudioSource;
     public bool m_IsPlaying;
-    public float m_SliderValue;
+
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        m_SliderValue = 0.5f;
-
-       m_AudioSource.Play();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        m_IsPlaying = true;
     }
 
     public void Toggle()
     {
-        if(!m_IsPlaying)
+        if(m_IsPlaying)
         {
-            m_IsPlaying = true;
-            m_AudioSource.mute = !m_AudioSource.mute;
+        m_IsPlaying = !m_IsPlaying;
+            Mute();
         }
         else
         {
-            m_IsPlaying = false;
-            m_AudioSource.mute = m_AudioSource.mute;
+            m_IsPlaying = true;
+            UnMute();
         }
+    }
+
+    public void Mute()
+    {
+        m_AudioSource.Pause();
+    }
+
+    public void UnMute()
+    {
+        m_AudioSource.UnPause();
     }
 }
