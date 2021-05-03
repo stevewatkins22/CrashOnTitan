@@ -31,7 +31,7 @@ public class LevelLoader : MonoBehaviour
 
         PlayerPrefs.SetInt("Score", gm.score);
         PlayerPrefs.SetInt("Lives", pc.lives);
-        PlayerPrefs.SetInt("Jumps", pc.maxNumberOfJumps);
+        PlayerPrefs.SetInt("Jumps", pc.numberOfJumps);
 
         yield return new WaitForSeconds(transitionTime);
 
