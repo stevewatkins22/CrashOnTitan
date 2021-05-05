@@ -5,65 +5,66 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    private int currentSceneIndex;
+    private int currentSceneIndex; // reference to the current scene index
 
-    public static bool m_gameIsPause = false;
-    public GameObject PauseMenuUI;
-    public GameObject SettingsMenuUI;
 
-    public GameManager gm;
-    public PlayerController pc;
+    public GameObject PauseMenuUI; // reference to the pause menu
+    public GameObject SettingsMenuUI; // reference to the settings menu
+
+    public GameManager gm; // reference to the game master
+    public PlayerController pc; // reference to the player controller
 
     private void Start()
     {
-        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>(); // find the game object with the game manager component
+        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>(); // find the game object with the player controller component
 
-        PauseMenuUI.SetActive(false);
-        SettingsMenuUI.SetActive(false);
+        PauseMenuUI.SetActive(false); // Hide the pause menu 
+        SettingsMenuUI.SetActive(false); // Hide the settings menu
     }
 
-    // Update is called once per frame
-    public void Resume()
+    public void Resume() // Resume the game and close the menu
     {
-        PauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        m_gameIsPause = false;
+        PauseMenuUI.SetActive(false); // Hide the pause menu ui
+        Time.timeScale = 1f; // Unpause the game
+   
     }
 
-    public void Pause()
+    public void Pause() // Pause the game and open the menu
     {
-        PauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        m_gameIsPause = true;
+        PauseMenuUI.SetActive(true); // Show the pause menu
+        Time.timeScale = 0f; // pause the game 
+
     }
 
-    public void SettingsOpen()
-    {
-        SettingsMenuUI.SetActive(true);
+    public void SettingsOpen() // Open the settings menu
+    { 
+        SettingsMenuUI.SetActive(true); // Show the settings menu
     }
 
-    public void SettingsClose()
+    public void SettingsClose() // Close the settings menu
     {
-        SettingsMenuUI.SetActive(false);
+        SettingsMenuUI.SetActive(false); // Hide the settings menu
     }
 
-    public void QuitGame()
+    public void QuitGame() // return to the main menu from the pause menu
     {
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("SavedScene", currentSceneIndex);
-        PlayerPrefs.SetInt("Score", gm.score);
-        PlayerPrefs.SetInt("Lives", pc.lives);
-        PlayerPrefs.SetInt("Jumps", pc.maxNumberOfJumps);
-        SceneManager.LoadScene("MainMenu");
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex; // save the current scene index
+        PlayerPrefs.SetInt("SavedScene", currentSceneIndex); // Save the scene index so that it can be continued from the main menu
+        PlayerPrefs.SetInt("Score", gm.score); // save the score
+        PlayerPrefs.SetInt("Health", pc.currentHealth); // Save the players health
+        PlayerPrefs.SetInt("Lives", pc.lives); // save the number of lifes
+        PlayerPrefs.SetInt("Jumps", pc.maxNumberOfJumps); // save the number of jumps
+        SceneManager.LoadScene("MainMenu"); // Load the main menu
     }
 
-    public void LoadMain()
+    public void LoadMain() // Return to the main menu from the game over ui
     {
-        SceneManager.LoadScene("MainMenu");
-        PlayerPrefs.DeleteKey("SavedScene");
-        PlayerPrefs.DeleteKey("Score");
-        PlayerPrefs.DeleteKey("Lives");
-        PlayerPrefs.DeleteKey("Jumps");
+        SceneManager.LoadScene("MainMenu"); // load the main menu
+        PlayerPrefs.DeleteKey("SavedScene"); // delete the last saved scene index
+        PlayerPrefs.DeleteKey("Score"); // delete the previous score
+        PlayerPrefs.DeleteKey("Lives"); // delete the number of lives
+        PlayerPrefs.DeleteKey("Jumps"); // delete the number fo jumps
+        PlayerPrefs.DeleteKey("Health"); // delete previous players health
     }
 }

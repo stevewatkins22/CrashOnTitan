@@ -5,37 +5,38 @@ using UnityEngine;
 public class AudioSettings : MonoBehaviour
 {
 
-    public AudioSource m_AudioSource;
-    public bool m_IsPlaying;
+    public AudioSource audioSource; // The audio source
+    public bool isPlaying; // Bool to determine toggle
 
 
     // Start is called before the first frame update
     private void Start()
     {
-        m_IsPlaying = true;
+        isPlaying = true; // set is playing to true, as the audio source plays on wake
     }
 
-    public void Toggle()
+    public void Toggle() // Toggle mute and unmute
     {
-        if(m_IsPlaying)
+        if(isPlaying) // If the audiosource is playing
         {
-        m_IsPlaying = !m_IsPlaying;
-            Mute();
+            isPlaying = !isPlaying; // set is playing to false
+            Mute(); // Mute
         }
         else
         {
-            m_IsPlaying = true;
-            UnMute();
+            isPlaying = true; // Set is playing to true
+            UnMute(); // unmute
         }
     }
-
-    public void Mute()
+     
+    public void Mute() // Mute the audiosource
     {
-        m_AudioSource.Pause();
+        audioSource.Pause();
     }
 
-    public void UnMute()
+    public void UnMute() // unmute the audiosource
     {
-        m_AudioSource.UnPause();
+        audioSource.UnPause();
     }
+
 }

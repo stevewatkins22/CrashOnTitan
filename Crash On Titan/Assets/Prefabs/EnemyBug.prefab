@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3144516952236141987}
   - component: {fileID: 6330739290173529186}
   - component: {fileID: 3144516952236141986}
-  - component: {fileID: 3144516952236141985}
   - component: {fileID: 3144516952236141984}
   - component: {fileID: 3144516952236141991}
   m_Layer: 9
@@ -98,11 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ff767f12ef10345bc05190ec70e441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 10
   value: 15
   damage: 20
   movementSpeed: 1.25
-  waitBetweenAttack: 1
   movingLeft: 1
   player: {fileID: 0}
   detectGround: {fileID: 1959090061561903113}
@@ -126,27 +124,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!50 &3144516952236141985
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3144516952236141989}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 2
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
 --- !u!61 &3144516952236141984
 BoxCollider2D:
   m_ObjectHideFlags: 0

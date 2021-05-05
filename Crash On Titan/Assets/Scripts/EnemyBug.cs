@@ -4,92 +4,80 @@ using UnityEngine;
 
 public class EnemyBug : MonoBehaviour
 {
-    public int health = 20;
-    public int value = 15;
-    public int damage = 5;
+    public int health = 20; // Set the health of the bug to 20
+    public int value = 15; // Set the value that is added to the players score
+    public int damage = 20; // set the amount of damage to bug does
 
-    public float movementSpeed = 1;
-    public float waitBetweenAttack;
+    public float movementSpeed = 1.25f; // Set the movement speed of the bug
 
-    public bool movingLeft = true;
+    public bool movingLeft = true; // Is the big moving left
 
-    public GameObject player;
+    public GameObject player; // Reference to the player
 
-    public Transform detectGround;
+    public Transform detectGround; // Detect the ground
 
-    public GameManager gm;
+    public GameManager gm; // reference to teh game master
 
-    private float attackCounter;
-
-    private Rigidbody2D rb;
 
     private void Start()
     {
-        attackCounter = waitBetweenAttack;
-
-        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        rb = GetComponent<Rigidbody2D>();
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>(); // Find the game object with the game manager component
     }
 
     private void Update()
     {
-        transform.Translate(Vector2.right * -movementSpeed * Time.deltaTime);
+        transform.Translate(Vector2.right * -movementSpeed * Time.deltaTime); // Move the enemy to the left (Default facing direction is left)
 
-        RaycastHit2D groundInfo = Physics2D.Raycast(detectGround.position, Vector2.down, 1f);
-        if(groundInfo.collider == false)
+        RaycastHit2D groundInfo = Physics2D.Raycast(detectGround.position, Vector2.down, 1f); // cast a ray from the detect ground game object downwards to check if there is ground
+        if(groundInfo.collider == false) // If the ray does not detect a collider
         {
-           if(movingLeft == true)
+           if(movingLeft == true) // If the bug is moving left
             {
-                Flip();
-                movingLeft = false;
+                Flip(); // Flip 180 degress on the y axis
+                movingLeft = false; // set moving left to false
             }
-           else
+           else // Otherwise
             {
-                Flip();
-                movingLeft = true;
+                Flip(); // Flip back
+                movingLeft = true; // moving left is set to true
             }
         }
     }
 
-    private void FixedUpdate()
+    public void TakeDamage(int damage) // Take damage from the player
     {
-        attackCounter -= Time.deltaTime;
-    }
+        health -= damage; // Minus the damage dealt from the bugs health
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if (health <= 0)
+        if (health <= 0) // if health is less than 0
         {
-            Die();
-            AddScore();
+            Die(); // Destroy game object
+            AddScore(); // Add to players score
         }
     }
 
-    void Die()
+    void Die() // Called when health is less than 0
     {
-        Destroy(gameObject);
+        Destroy(gameObject); // Destroy this game object
     }
 
-    void AddScore()
+    void AddScore() // Add to the player score
     {
        gm.AddScore(value);
     }
 
-    private void Flip()
+    private void Flip() // Rotate the sprite 180 degress in the y axis
     {
         transform.Rotate(0, 180, 0);
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col) // Upon collision
     {
 
-        PlayerController player = col.GetComponent<PlayerController>();
-        if (player != null && attackCounter < 0)
+        PlayerController player = col.GetComponent<PlayerController>(); // If the collsion is with the player
+        if (player != null)
         {
-            player.TakeDamage(damage);
-            attackCounter = waitBetweenAttack;
+            player.TakeDamage(damage); // Deal damage to the player
+            Die(); // Die
         }
     }
 }

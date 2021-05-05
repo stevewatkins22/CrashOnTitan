@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public GameManager gm;
+    public GameManager gm; // GameManager game object
 
-    public int Value = 20;
+    public int value = 20; // value to add to score 
 
     private void Start()
     {
-        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>(); // find the game manager object
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) // upon entering collider set to trigger
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player")) // if the object is the player
         {
-            gm.AddScore(Value);
+            gm.AddScore(value); // Add the value to the score
         }
     }
 }
