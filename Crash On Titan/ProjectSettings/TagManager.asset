@@ -9,6 +9,7 @@ TagManager:
   - Respawn/Start
   - GameManager
   - Upgrade
+  - ChildOfPlayer
   layers:
   - Default
   - TransparentFX

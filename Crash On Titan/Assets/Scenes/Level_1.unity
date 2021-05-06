@@ -17305,6 +17305,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2721884870142504475, guid: 7d4cc2bdc7ea0904cbca10332a0abe28,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5376270462902125261, guid: 7d4cc2bdc7ea0904cbca10332a0abe28, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7d4cc2bdc7ea0904cbca10332a0abe28, type: 3}
@@ -17840,7 +17845,7 @@ PrefabInstance:
         type: 3}
       propertyPath: retryBtn
       value: 
-      objectReference: {fileID: 5517056530663337108}
+      objectReference: {fileID: 0}
     - target: {fileID: 39455397377857291, guid: 6f3fa0e7ee440994b95ae74ee7b51927,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18649,12 +18654,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &5517056530663337108 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8745705251702997371, guid: 6af01afa8a89f374cae92545277eaf48,
-    type: 3}
-  m_PrefabInstance: {fileID: 3877169618924170735}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5517056531284947354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8745705250479250549, guid: 6af01afa8a89f374cae92545277eaf48,

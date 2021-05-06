@@ -19,5 +19,9 @@ public class Coin : MonoBehaviour
         {
             gm.AddScore(value); // Add the value to the score
         }
+        if(other.gameObject.CompareTag("ChildOfPlayer")) // The the collider belongs to a child of the player
+        {
+            gm.AddScore(value); // Add the value to the score
+        }
     }
 }

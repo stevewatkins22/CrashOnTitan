@@ -5,12 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{
-
+{    
     public int score; // Player score
-    public int retry; // Retry attempt
-    public int retryCount; // Retry attempt count
-    public bool retryed; // Bool if attempted retry
 
     public Transform respawnPoint; //  Set the players respawn point
     public Transform player; // The player
@@ -23,7 +19,6 @@ public class GameManager : MonoBehaviour
     public GameObject upgradeMenu; // Reference to the upgrade menu ui
     public GameObject gameOverUI; // reference to the game over ui
     public GameObject useBtn; // reference to the use button
-    public GameObject retryBtn; // reference to the retry button
 
     // Start is called before the first frame update
     void Start()
@@ -32,15 +27,6 @@ public class GameManager : MonoBehaviour
         upgradeMenu.SetActive(false); // hide the upgrade menu on start
         useBtn.SetActive(false); // hide the use button on start
         Time.timeScale = 1f; // set game speed to 1 (Essentially start the game)
-        retry = PlayerPrefs.GetInt("Retry"); // set retry to either 1 or 0
-        if(retry != 1) // if retry is 0 - This is used to determine if the retry button will appear
-        {
-            retryed = false; // Set the bool to false
-        }
-        else
-        {
-            retryed = true; // set the bool to true
-        }
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>(); // Find the game object with the componenet PlayerController
 
         UpdateLives(); // Update current lives
@@ -84,25 +70,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver() // Called whe the player runs out of lives
     {
-        gameOverUI.SetActive(true); // Display the game over ui
-        if (retryed) // If the player has retryed 
-        {
-            retryBtn.SetActive(false); // do not show the retry button
-        }
-        else; // else show the retry button
+        gameOverUI.SetActive(true); // Show the game over UI
         Time.timeScale = 0f; // pause the game
-
-    }
-
-    public void Retry() // Retry function will reload the current scene and give the player 1 additional life
-    {
-        PlayerPrefs.SetInt("Score", score); // Set the score to what they have
-        pc.lives++; // Add one life
-        retryCount++; // Add one to player count
-        PlayerPrefs.SetInt("Lives", pc.lives); // Save the number of lives
-        UpdateLives(); // Update the lives text
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // reload the current scene
-        PlayerPrefs.SetInt("Retry", retryCount); // set retry to the retry count
     }
 
     public void UpgradeMenu() // Open the upgrade menu ui

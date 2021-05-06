@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 377016066}
   m_Layer: 8
   m_Name: Stomper
-  m_TagString: Untagged
+  m_TagString: ChildOfPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,7 +144,6 @@ GameObject:
   - component: {fileID: 2721884871132097005}
   - component: {fileID: 2721884871132097009}
   - component: {fileID: 2721884871132097015}
-  - component: {fileID: 5376270462902125261}
   - component: {fileID: 2721884871132097004}
   - component: {fileID: 2721884871132097008}
   - component: {fileID: 2721884871132097011}
@@ -237,9 +236,11 @@ MonoBehaviour:
   movementSpeed: 4
   jumpForce: 2.5
   groundCheckRadius: 0.15
-  numberOfJumps: 2
+  lives: 0
+  maxLives: 3
   maxHealth: 100
   currentHealth: 0
+  numberOfJumps: 2
   numberOfJumpsLeft: 0
   maxNumberOfJumps: 3
   groundCheck: {fileID: 2721884870775771423}
@@ -247,6 +248,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
+  gm: {fileID: 0}
 --- !u!114 &2721884871132097015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,18 +264,6 @@ MonoBehaviour:
   firePoint: {fileID: 2721884870142504472}
   bulletPrefab: {fileID: 8716837621787331038, guid: 28c50c3041c2ad448a71b3f5e250ece4,
     type: 3}
---- !u!114 &5376270462902125261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2721884871132097007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8a059e3e3c07ec4389e73b0b6535f7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &2721884871132097004
 Rigidbody2D:
   serializedVersion: 4
